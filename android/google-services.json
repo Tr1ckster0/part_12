@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981780727151",
+    "project_id": "dva4-fa94c",
+    "storage_bucket": "dva4-fa94c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981780727151:android:c60441d8fb24a8ba3e549a",
+        "android_client_info": {
+          "package_name": "com.example.part_12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuHV0hbVqDjgaHcBvpcyCLCJfx6jLk75I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

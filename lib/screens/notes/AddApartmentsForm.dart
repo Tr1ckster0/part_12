@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:part_12/helpers/size_config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -251,31 +252,36 @@ class _AddApartmentsFormState extends State<AddApartmentsForm> {
                             top: 5,
                             right: 5,
                             child: InkWell(
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => SimpleDialog(
-                                          title:
-                                              Text('Загрузить изображение из'),
-                                          children: [
-                                            SimpleDialogOption(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                _getImageAvatar(
-                                                    ImageSource.gallery);
-                                              },
-                                              child: Text('Галерея'),
-                                            ),
-                                            SimpleDialogOption(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                _getImageAvatar(
-                                                    ImageSource.camera);
-                                              },
-                                              child: Text('Камера'),
-                                            )
-                                          ],
-                                        ));
+                              onTap: () async {
+                                await Permission.camera.request();
+                                var status = await Permission.microphone.status;
+                                if (status.isGranted) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => SimpleDialog(
+                                            title: Text(
+                                                'Загрузить изображение из'),
+                                            children: [
+                                              SimpleDialogOption(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  _getImageAvatar(
+                                                      ImageSource.gallery);
+                                                },
+                                                child: Text('Галерея'),
+                                              ),
+                                              SimpleDialogOption(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  _getImageAvatar(
+                                                      ImageSource.camera);
+                                                },
+                                                child: Text('Камера'),
+                                              )
+                                            ],
+                                          ));
+                                }
+
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 15),
